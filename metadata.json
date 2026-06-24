@@ -1,0 +1,6 @@
+{
+  "name": "魚漢字タイピングゲーム",
+  "description": "流れてくる魚の漢字の読み方をタイピングして釣り上げる、知育・脳トレゲームです。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
