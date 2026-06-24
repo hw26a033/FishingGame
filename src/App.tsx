@@ -23,7 +23,8 @@ import {
   Award,
   BookMarked,
   Sparkles,
-  Waves
+  Waves,
+  AlertCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -114,6 +115,275 @@ function shuffleArray<T>(array: T[]): T[] {
   return arr;
 }
 
+// ユーザー提供のロゴデザイン「うお！タイピングマスター」を再現した高品質SVGコンポーネント
+export function TitleLogo({ className = "h-12" }: { className?: string }) {
+  return (
+    <svg 
+      className={className} 
+      viewBox="0 0 400 180" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        {/* 水色〜シアン〜青のグラデーション */}
+        <linearGradient id="fishGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#e0f2fe" />
+          <stop offset="40%" stopColor="#38bdf8" />
+          <stop offset="100%" stopColor="#0284c7" />
+        </linearGradient>
+
+        {/* 鱗（うろこ）テクスチャパターン */}
+        <pattern id="scalesPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 0,10 A 10,10 0 0,0 20,10 A 10,10 0 0,0 0,10 Z" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.35" />
+          <path d="M 10,20 A 10,10 0 0,0 30,20 A 10,10 0 0,0 10,20 Z" fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.35" />
+        </pattern>
+        
+        {/* 黒フチ用シャドウ */}
+        <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+          <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#000000" floodOpacity="0.4" />
+        </filter>
+      </defs>
+
+      {/* 影と立体感のオフセット用（オレンジ色の3D立体シャドウ） */}
+      <g transform="translate(4, 5)" opacity="0.9">
+        <text 
+          x="200" 
+          y="75" 
+          textAnchor="middle" 
+          fontSize="68" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#f97316" 
+          strokeWidth="16" 
+          strokeLinejoin="round"
+        >
+          うお！
+        </text>
+        <text 
+          x="200" 
+          y="130" 
+          textAnchor="middle" 
+          fontSize="36" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#f97316" 
+          strokeWidth="12" 
+          strokeLinejoin="round"
+          transform="rotate(-4, 200, 120)"
+        >
+          タイピングマスター
+        </text>
+      </g>
+
+      {/* メインロゴテキスト：うお！ */}
+      <g>
+        <text 
+          x="200" 
+          y="75" 
+          textAnchor="middle" 
+          fontSize="68" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#000000" 
+          strokeWidth="14" 
+          strokeLinejoin="round"
+          filter="url(#shadow)"
+        >
+          うお！
+        </text>
+        <text 
+          x="200" 
+          y="75" 
+          textAnchor="middle" 
+          fontSize="68" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#ffffff" 
+          strokeWidth="6" 
+          strokeLinejoin="round"
+        >
+          うお！
+        </text>
+        <text 
+          x="200" 
+          y="75" 
+          textAnchor="middle" 
+          fontSize="68" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fill="url(#fishGrad)"
+        >
+          うお！
+        </text>
+        <text 
+          x="200" 
+          y="75" 
+          textAnchor="middle" 
+          fontSize="68" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fill="url(#scalesPattern)"
+          opacity="0.9"
+        >
+          うお！
+        </text>
+      </g>
+
+      {/* メインロゴテキスト：タイピングマスター (少し右上がりに傾ける) */}
+      <g transform="rotate(-4, 200, 120)">
+        <text 
+          x="200" 
+          y="130" 
+          textAnchor="middle" 
+          fontSize="36" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#000000" 
+          strokeWidth="10" 
+          strokeLinejoin="round"
+          filter="url(#shadow)"
+        >
+          タイピングマスター
+        </text>
+        <text 
+          x="200" 
+          y="130" 
+          textAnchor="middle" 
+          fontSize="36" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#ffffff" 
+          strokeWidth="4" 
+          strokeLinejoin="round"
+        >
+          タイピングマスター
+        </text>
+        <text 
+          x="200" 
+          y="130" 
+          textAnchor="middle" 
+          fontSize="36" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fill="url(#fishGrad)"
+        >
+          タイピングマスター
+        </text>
+        <text 
+          x="200" 
+          y="130" 
+          textAnchor="middle" 
+          fontSize="36" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fill="url(#scalesPattern)"
+          opacity="0.9"
+        >
+          タイピングマスター
+        </text>
+      </g>
+
+      {/* サブタイトル英語：UO! TYPING MASTER */}
+      <g>
+        <text 
+          x="200" 
+          y="165" 
+          textAnchor="middle" 
+          fontSize="14" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          stroke="#000000" 
+          strokeWidth="4" 
+          strokeLinejoin="round"
+          letterSpacing="1"
+        >
+          UO! TYPING MASTER
+        </text>
+        <text 
+          x="200" 
+          y="165" 
+          textAnchor="middle" 
+          fontSize="14" 
+          fontWeight="900" 
+          fontFamily="system-ui, -apple-system, sans-serif"
+          fill="#ffffff"
+          letterSpacing="1"
+        >
+          UO! TYPING MASTER
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+// Web Audio API helper for custom sound effects
+let globalAudioCtx: AudioContext | null = null;
+
+const getAudioContext = (): AudioContext => {
+  if (!globalAudioCtx) {
+    globalAudioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  }
+  if (globalAudioCtx.state === 'suspended') {
+    globalAudioCtx.resume();
+  }
+  return globalAudioCtx;
+};
+
+const playWrongSound = (isMuted: boolean) => {
+  if (isMuted) return;
+  try {
+    const ctx = getAudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(140, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.15);
+    
+    gain.gain.setValueAtTime(0.12, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start();
+    osc.stop(ctx.currentTime + 0.15);
+  } catch (e) {
+    console.warn("Failed to play wrong sound:", e);
+  }
+};
+
+const playCatchSound = (isMuted: boolean) => {
+  if (isMuted) return;
+  try {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    
+    // C Major Arpeggio for a happy, crisp catch sound
+    const cMajorNotes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    
+    cMajorNotes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+      
+      gain.gain.setValueAtTime(0, now + idx * 0.05);
+      gain.gain.linearRampToValueAtTime(0.1, now + idx * 0.05 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.22);
+      
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      osc.start(now + idx * 0.05);
+      osc.stop(now + idx * 0.05 + 0.25);
+    });
+  } catch (e) {
+    console.warn("Failed to play catch sound:", e);
+  }
+};
+
 export default function App() {
   // App view modes: 'game' or 'spec'
   const [appMode, setAppMode] = useState<'game' | 'spec'>('game');
@@ -129,7 +399,10 @@ export default function App() {
   });
   
   // Sound toggle state (visual simulation)
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
+
+  // Furigana showing/hidden option (educational config)
+  const [showFurigana, setShowFurigana] = useState<boolean>(true);
 
   // Load Highscores from localStorage
   useEffect(() => {
@@ -254,6 +527,7 @@ export default function App() {
   const [typedInput, setTypedInput] = useState<string>(""); // Keystrokes correctly typed so far
   const [wrongInputFlag, setWrongInputFlag] = useState(false);
   const [caughtFishList, setCaughtFishList] = useState<Fish[]>([]);
+  const [missedFishList, setMissedFishList] = useState<Fish[]>([]);
   
   const activeTargetFish = activePlayList[currentFishIndex];
 
@@ -336,6 +610,7 @@ export default function App() {
     setTypedInput("");
     setWrongInputFlag(false);
     setCaughtFishList([]);
+    setMissedFishList([]);
     setFishXProgress(0);
     
     setGameState('playing');
@@ -370,6 +645,7 @@ export default function App() {
 
         if (isComplete) {
           // Complete word! Fish successfully caught!
+          playCatchSound(isMuted);
           const newScore = playScore + 1;
           setPlayScore(newScore);
           setCombo(prev => {
@@ -378,7 +654,12 @@ export default function App() {
             return newCombo;
           });
           
-          setCaughtFishList(prev => [...prev, activeTargetFish]);
+          setCaughtFishList(prev => {
+            if (prev.some(f => f.kanji === activeTargetFish.kanji)) {
+              return prev;
+            }
+            return [...prev, activeTargetFish];
+          });
           setLastCaughtFish(activeTargetFish);
           setIsFishingAnimated(true);
           setTimeout(() => setIsFishingAnimated(false), 900);
@@ -388,6 +669,7 @@ export default function App() {
         }
       } else {
         // Wrong typing key pressed
+        playWrongSound(isMuted);
         setWrongInputFlag(true);
         setCombo(0); // break combo
         setTimeout(() => setWrongInputFlag(false), 180);
@@ -398,7 +680,7 @@ export default function App() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [gameState, currentFishIndex, typedInput, activePlayList, playScore, maxCombo, validRomans]);
+  }, [gameState, currentFishIndex, typedInput, activePlayList, playScore, maxCombo, validRomans, isMuted]);
 
   // Game timer loop
   useEffect(() => {
@@ -456,6 +738,17 @@ export default function App() {
             // Swam away! No penalty, combo breaks
             setCombo(0);
             setWrongInputFlag(false);
+            
+            // Record missed fish
+            const escapedFish = activePlayList[currentFishIndex];
+            if (escapedFish) {
+              setMissedFishList(prevList => {
+                if (prevList.some(f => f.kanji === escapedFish.kanji)) {
+                  return prevList;
+                }
+                return [...prevList, escapedFish];
+              });
+            }
             
             // Cycle to next fish in deck using shuffling helper
             advanceToNextFish(activePlayList, currentFishIndex);
@@ -553,22 +846,12 @@ export default function App() {
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans flex flex-col antialiased select-none">
       
       {/* 1. Header (Title Bar) */}
-      <header className="border-b border-slate-800 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between shadow-lg">
-        <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-xl shadow-md">
-            <Anchor className="h-5.5 w-5.5 animate-pulse" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg md:text-xl font-extrabold tracking-tight text-white">
-                魚漢字タイピングゲーム
-              </h1>
-              <span className="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-1.5 py-0.5 rounded font-mono font-bold">
-                PROTOTYPE v1.2
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 font-medium">魚の漢字を打って一本釣り！知力とタイピングを競う脳トレゲーム</p>
-          </div>
+      <header className="border-b border-slate-800 bg-slate-950/90 backdrop-blur-md sticky top-0 z-50 px-6 py-2.5 flex items-center justify-between shadow-lg">
+        <div className="flex items-center space-x-4">
+          <TitleLogo className="h-11 md:h-14 w-auto" />
+          <span className="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-1.5 py-0.5 rounded font-mono font-bold mt-1">
+            PROTOTYPE v1.2
+          </span>
         </div>
 
         {/* Workspace Mode Switcher (Specification vs Live Sandbox Demo) */}
@@ -770,15 +1053,12 @@ export default function App() {
                     </div>
 
                     {/* Logo & Title */}
-                    <div className="space-y-2">
+                    <div className="space-y-3 flex flex-col items-center">
                       <span className="text-xs bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-extrabold tracking-widest uppercase">
                         一漁一会 ・ 知育タイピング
                       </span>
-                      <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight flex items-center justify-center gap-2 drop-shadow-md">
-                        <Anchor className="text-blue-500 h-8 w-8 animate-bounce" />
-                        魚漢字タイピング
-                      </h2>
-                      <p className="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
+                      <TitleLogo className="h-32 md:h-40 w-auto filter drop-shadow-2xl" />
+                      <p className="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto text-center mt-2">
                         流れてくる魚の漢字の「読み」をローマ字で入力し、<br />
                         制限時間内に何匹の魚を釣り上げられるか競いましょう！
                       </p>
@@ -816,6 +1096,31 @@ export default function App() {
                             </button>
                           );
                         })}
+                      </div>
+                    </div>
+
+                    {/* FURIGANA TOGGLE OPTION */}
+                    <div className="space-y-2 text-left bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <label className="text-xs font-bold text-slate-300 flex items-center gap-1">
+                            <span>🏷️ 漢字の振り仮名（読み・ヒント）</span>
+                          </label>
+                          <p className="text-[10px] text-slate-400">ゲーム中にひらがなの「読み」や「和名」を表示します</p>
+                        </div>
+                        <button
+                          onClick={() => setShowFurigana(!showFurigana)}
+                          className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                            showFurigana ? 'bg-blue-600' : 'bg-slate-700'
+                          }`}
+                          id="toggle-furigana"
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                              showFurigana ? 'translate-x-5' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
                       </div>
                     </div>
 
@@ -1002,9 +1307,15 @@ export default function App() {
                             <span className="text-4xl font-extrabold text-white tracking-tight block">
                               {activeTargetFish.kanji}
                             </span>
-                            <span className="text-[10px] text-slate-400 font-bold uppercase mt-1 block">
-                              {activeTargetFish.meaning}
-                            </span>
+                            {showFurigana ? (
+                              <span className="text-[10px] text-slate-400 font-bold uppercase mt-1 block">
+                                {activeTargetFish.meaning}
+                              </span>
+                            ) : (
+                              <span className="text-[10px] text-slate-500 font-bold uppercase mt-1 block">
+                                ？？？
+                              </span>
+                            )}
                           </div>
 
                         </div>
@@ -1016,7 +1327,9 @@ export default function App() {
                       
                       {/* Roman Guide Navigation */}
                       <div className="text-center space-y-1">
-                        <span className="text-xs text-slate-500 uppercase tracking-widest font-mono font-bold block">ローマ字をキーボードで打ちましょう</span>
+                        <span className="text-xs text-slate-500 uppercase tracking-widest font-mono font-bold block">
+                          {showFurigana ? "ローマ字をキーボードで打ちましょう" : "漢字から読みを推測してキーボードで打ちましょう（伏せ字）"}
+                        </span>
                         
                         {/* Interactive Roman letters styling */}
                         <div className="flex items-center justify-center gap-1.5 py-1">
@@ -1027,12 +1340,16 @@ export default function App() {
                             } else if (charIdx === typedProgress) {
                               charClass = 'text-white bg-blue-600 border-blue-400 animate-pulse font-black scale-110';
                             }
+                            
+                            // 振り仮名非表示の時は、未入力文字を「？」で伏せることで答えのネタバレを防止する
+                            const displayChar = (showFurigana || charIdx < typedProgress) ? char : '?';
+
                             return (
                               <span 
                                 key={charIdx} 
                                 className={`w-8 h-10 border rounded-lg flex items-center justify-center font-mono text-lg transition-all ${charClass}`}
                               >
-                                {char}
+                                {displayChar}
                               </span>
                             );
                           })}
@@ -1043,11 +1360,11 @@ export default function App() {
                       <div className="flex justify-between items-center text-xs text-slate-400 font-mono bg-slate-950 px-4 py-2 rounded-xl border border-slate-800">
                         <span className="flex items-center gap-1">
                           <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
-                          <span>読み: <strong className="text-white text-sm ml-1">{activeTargetFish.reading}</strong></span>
+                          <span>読み: <strong className="text-white text-sm ml-1">{showFurigana ? activeTargetFish.reading : "（非表示）"}</strong></span>
                         </span>
                         
                         <span className="text-slate-500 text-[10px]">
-                          ヒント: {activeTargetFish.meaning}の形から推測しよう！
+                          {showFurigana ? `ヒント: ${activeTargetFish.meaning}の形から推測しよう！` : "ヒント: 魚の形と漢字から思い出そう！"}
                         </span>
                       </div>
 
@@ -1105,23 +1422,56 @@ export default function App() {
                       </div>
                     </div>
 
-                    {/* List of caught fish (learning log to ensure it's "人のためになる" educational app) */}
+                    {/* List of caught fish */}
                     <div className="space-y-2">
                       <h4 className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
-                        <BookMarked className="h-4 w-4 text-blue-400" />
+                        <BookMarked className="h-4 w-4 text-emerald-400" />
                         <span>釣り上げた魚漢字リスト（復習メモ）:</span>
                       </h4>
 
                       {caughtFishList.length === 0 ? (
-                        <div className="p-6 bg-slate-950/40 rounded-2xl border border-slate-800/60 text-center text-slate-500 text-xs">
+                        <div className="p-4 bg-slate-950/40 rounded-2xl border border-slate-800/60 text-center text-slate-500 text-xs">
                           まだ釣り上げた魚はいません。次は予習リストを見て再挑戦しましょう！
                         </div>
                       ) : (
-                        <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
+                        <div className="max-h-36 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {caughtFishList.map((fish, index) => (
-                              <div key={index} className="p-3 bg-slate-950/50 rounded-xl border border-slate-850 flex items-center gap-3">
-                                <span className="text-2xl font-bold text-blue-400 w-10 h-10 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
+                              <div key={index} className="p-3 bg-slate-950/50 rounded-xl border border-emerald-500/10 flex items-center gap-3">
+                                <span className="text-2xl font-bold text-emerald-400 w-10 h-10 rounded-lg bg-emerald-950/30 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                  {fish.kanji}
+                                </span>
+                                <div className="text-left">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="text-xs font-bold text-white">{fish.reading}</span>
+                                    <span className="text-[9px] font-mono text-slate-500">({fish.roman})</span>
+                                  </div>
+                                  <p className="text-[10px] text-slate-400 line-clamp-1">{fish.origin}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* List of missed fish */}
+                    <div className="space-y-2 pt-2">
+                      <h4 className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+                        <AlertCircle className="h-4 w-4 text-rose-400" />
+                        <span>釣り逃した魚漢字リスト（リベンジメモ）:</span>
+                      </h4>
+
+                      {missedFishList.length === 0 ? (
+                        <div className="p-4 bg-slate-950/40 rounded-2xl border border-emerald-500/10 text-center text-emerald-400 text-xs font-medium">
+                          🎉 素晴らしい！今回のプレイでは一匹も魚を逃しませんでした！
+                        </div>
+                      ) : (
+                        <div className="max-h-36 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {missedFishList.map((fish, index) => (
+                              <div key={index} className="p-3 bg-slate-950/50 rounded-xl border border-rose-500/10 flex items-center gap-3">
+                                <span className="text-2xl font-bold text-rose-400 w-10 h-10 rounded-lg bg-rose-950/30 border border-rose-500/20 flex items-center justify-center shrink-0">
                                   {fish.kanji}
                                 </span>
                                 <div className="text-left">
